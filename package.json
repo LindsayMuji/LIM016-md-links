@@ -31,5 +31,8 @@
       "jest": "^27.4.5"
     }
   },
-    "type": "module"
+  "type": "module",
+  "dependencies": {
+    "readdirp": "^3.6.0"
+  }
 }

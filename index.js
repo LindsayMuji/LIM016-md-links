@@ -4,18 +4,69 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-let fileRoute='C://Users//melis//OneDrive//EScritorio//MDLinks//LIM016-md-links//Carpeta Prueba';
+let fileRoute = 'C://Users//melis//OneDrive//EScritorio//MDLinks//LIM016-md-links//Carpeta Prueba';
 
 // check if the route exist?
-let fileExist = fs.existsSync(fileRoute)? console.log("El archivo EXISTE!"):console.log("El archivo NO EXISTE!");
+let fileExist = fs.existsSync(fileRoute) ? console.log("El archivo EXISTE!") : console.log("El archivo NO EXISTE!");
 // convert route in absolute
-let absoluteRoute = path.isAbsolute(fileRoute) ? path.resolve(fileRoute) : fileRoute
+let absoluteRoute = path.isAbsolute(fileRoute) ? fileRoute : path.resolve(fileRoute);
 console.log(absoluteRoute);
+
 //check if it is a Directory
-let isDirectory = fs.lstatSync(fileRoute).isDirectory();
-  console.log(isDirectory);
+const verifyFile = (fileRoute) => {
+  let isDirectory = fs.lstatSync(fileRoute);
+  const listDirectory = isDirectory.isFile();
+  //Read Directory
+  return listDirectory;
+}
 //Read Directory
-let readDirectory = fs.readFile(fileRoute,{encoding:"utf-8"})? console.log(readDirectory):console.log(error.message);
+const directoryList = (fileRoute) => {
+  let arrayFile = [];
+  if (verifyFile(fileRoute)) {
+    arrayFile.push(fileRoute);
+  } else {
+    const readDirectory = fs.readdirSync(fileRoute);
+
+    readDirectory.forEach(eleFile => {
+      const route = path.join(fileRoute, eleFile);
+      arrayFile = arrayFile.concat(directoryList(route))
+    })
+  }
+  return arrayFile;
+}
+
+console.log(directoryList(fileRoute));
+
+const validateExtension = (arrayFile) => path.extname(arrayFile) === '.md';
+console.log(validateExtension(arrayFile));
+
+
+/*const searchFilesMd = arrayFile =>{
+  arrayFile.filter((route) => {
+    return path.extname(route) === '.md';
+  });
+}
+  console.log(searchFilesMd(fileRoute));
+//recorrer directorio y convertir en ruta absoluta de cada archivo
+
 //check if it is a File
-let file = fs.lstatSync(fileRoute).isFile();
-  console.log(file);
+/*let file = fs.lstatSync(fileRoute).isFile() ? console.log("Es un Archivo") : console.log("No es un archivo");
+console.log(file);
+//Read File
+function readfile(callback) {
+  fs.readFile(fileRoute, "utf-8", function (error, data) {
+    if (error) throw error
+    callback(data)
+  })
+}
+readfile(function (data) {
+  console.log(data)
+})*/
+
+
+/*function filewalker(fileRoute, (err, data)) {
+  if (err) {
+    throw err;
+  }
+  console.log(data);
+});*/
