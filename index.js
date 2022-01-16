@@ -35,38 +35,3 @@ const directoryList = (fileRoute) => {
   return arrayFile;
 }
 
-console.log(directoryList(fileRoute));
-
-const validateExtension = (arrayFile) => path.extname(arrayFile) === '.md';
-console.log(validateExtension(arrayFile));
-
-
-/*const searchFilesMd = arrayFile =>{
-  arrayFile.filter((route) => {
-    return path.extname(route) === '.md';
-  });
-}
-  console.log(searchFilesMd(fileRoute));
-//recorrer directorio y convertir en ruta absoluta de cada archivo
-
-//check if it is a File
-/*let file = fs.lstatSync(fileRoute).isFile() ? console.log("Es un Archivo") : console.log("No es un archivo");
-console.log(file);
-//Read File
-function readfile(callback) {
-  fs.readFile(fileRoute, "utf-8", function (error, data) {
-    if (error) throw error
-    callback(data)
-  })
-}
-readfile(function (data) {
-  console.log(data)
-})*/
-
-
-/*function filewalker(fileRoute, (err, data)) {
-  if (err) {
-    throw err;
-  }
-  console.log(data);
-});*/
