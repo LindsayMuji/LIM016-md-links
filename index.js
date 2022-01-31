@@ -4,10 +4,9 @@ import * as path from 'path';
 import jsdom from 'jsdom';
 const { JSDOM } = jsdom;
 import { marked } from 'marked';
-import { clear } from 'console';
 
-let fileRoute = 'C://Users//melis//OneDrive//EScritorio//MDLinks//LIM016-md-links//Carpeta Prueba';
-
+//let fileRoute = 'C://Users//melis//OneDrive//EScritorio//MDLinks//LIM016-md-links//CarpetaPrueba';
+let fileRoute = process.argv[2];
 // check if the route exist?
 let fileExist = fs.existsSync(fileRoute) ? console.log("El archivo EXISTE!") : console.log("El archivo NO EXISTE!");
 
@@ -58,11 +57,38 @@ console.log('filter Md files', result1);
 let arrayReadFile = [];
 result1.forEach((file) => {
   let fileContent = fs.readFileSync(file, 'utf-8');
-  arrayReadFile.push(fileContent);
+  arrayReadFile.push({route: file, content: fileContent})
 })
 console.log('Read Files', arrayReadFile);
 
 //Convert Md file to HTML
+const htmlFileContent = (contentFile) => {
+  return contentFile.map(element => marked.parse(element.content));
+};
+console.log('File in HTML', htmlFileContent(arrayReadFile));
+
+//Get Links
+let htmlContent = htmlFileContent(arrayReadFile);
+const getLinks = (htmlContent) => {
+  const arrayLinks = [];
+  const dom = new JSDOM(htmlContent);
+  const filterATags = dom.window.document.querySelectorAll('a');
+  filterATags.forEach(element => {
+    arrayLinks.push({
+      href: element.href,
+      text: (element.textContent).slice(0, 50),
+      file: element.file
+    });
+  });
+  console.log('Array of Links', arrayLinks);
+}
+getLinks(htmlContent);
+
+
+
+
+
+
 
 
 
