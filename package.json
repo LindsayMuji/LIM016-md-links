@@ -35,6 +35,7 @@
   "dependencies": {
     "jsdom": "^19.0.0",
     "marked": "^4.0.10",
+    "node-fetch": "^3.2.0",
     "readdirp": "^3.6.0"
   }
 }

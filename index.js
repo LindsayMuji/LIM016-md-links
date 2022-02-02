@@ -4,6 +4,7 @@ import * as path from 'path';
 import jsdom from 'jsdom';
 const { JSDOM } = jsdom;
 import { marked } from 'marked';
+import fetch from 'node-fetch';
 
 //let fileRoute = 'C://Users//melis//OneDrive//EScritorio//MDLinks//LIM016-md-links//CarpetaPrueba';
 let fileRoute = process.argv[2];
@@ -50,53 +51,70 @@ const findMdFile = (arrMd) => {
   arrayMdFile = arrMd.filter(e => path.extname(e) === '.md');
   return arrayMdFile;
 };
-const result1 = findMdFile(result);
-console.log('filter Md files', result1);
+const arrayMd = findMdFile(result);
+console.log('filter Md files', arrayMd);
 
-//Read Files and display an array
-let arrayReadFile = [];
-result1.forEach((file) => {
-  let fileContent = fs.readFileSync(file, 'utf-8');
-  arrayReadFile.push({route: file, content: fileContent})
-})
-console.log('Read Files', arrayReadFile);
-
-//Convert Md file to HTML
-const htmlFileContent = (contentFile) => {
-  return contentFile.map(element => marked.parse(element.content));
-};
-console.log('File in HTML', htmlFileContent(arrayReadFile));
-
-//Get Links
-let htmlContent = htmlFileContent(arrayReadFile);
-const getLinks = (htmlContent) => {
-  const arrayLinks = [];
-  const dom = new JSDOM(htmlContent);
-  const filterATags = dom.window.document.querySelectorAll('a');
-  filterATags.forEach(element => {
-    arrayLinks.push({
-      href: element.href,
-      text: (element.textContent).slice(0, 50),
-      file: element.file
+//Find Links and display an array
+const getLinks = (arrMdFile) => {
+  let arrayLinks = [];
+  arrMdFile.forEach((mdRoute) => {
+    //Read Files
+    let fileContent = fs.readFileSync(mdRoute, 'utf-8');
+    console.log('Read File', fileContent);
+    //Convert Md file to HTML
+    const htmlFileContent = marked.parse(fileContent);
+    console.log('HTML File', htmlFileContent);
+    //Get Links
+    const dom = new JSDOM(htmlFileContent);
+    const filterATags = dom.window.document.querySelectorAll('a');
+    filterATags.forEach(element => {
+      arrayLinks.push({
+        href: element.href,
+        text: (element.textContent).slice(0, 50),
+        file: mdRoute
+      });
     });
   });
-  console.log('Array of Links', arrayLinks);
+  return arrayLinks
+};
+
+console.log('Array of Links', getLinks(arrayMd));
+
+//Validate link
+const validateLinks = (objectLinks) => {
+  const arrayValidate = objectLinks.map((element) => {
+    return fetch(element.href)
+    .then((response) => {
+      if (response.status>=200 && response.status<=299){
+        return {
+          href: element.href,
+          text: element.text,
+          file: element.file,
+          status: response.status,
+          ok: 'OK',
+        };
+      }else{
+        return {
+          href: element.href,
+          text: element.text,
+          file: element.file,
+          status: response.status,
+          ok: 'FAIL',
+        };
+      }
+    })
+    .catch(() => {
+      return{
+        href: element.href,
+          text: element.text,
+          file: element.file,
+          status: 'Fail Status',
+          ok: 'FAIL',
+      }
+    });
+  });
+  return Promise.all(arrayValidate);
 }
-getLinks(htmlContent);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+console.log('Validation', validateLinks(getLinks(arrayMd)));
 
