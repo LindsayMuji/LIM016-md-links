@@ -7,16 +7,15 @@ import { marked } from 'marked';
 import fetch from 'node-fetch';
 
 //let fileRoute = 'C://Users//melis//OneDrive//EScritorio//MDLinks//LIM016-md-links//CarpetaPrueba';
-let fileRoute = process.argv[2];
 // check if the route exist?
-let fileExist = fs.existsSync(fileRoute) ? console.log("El archivo EXISTE!") : console.log("El archivo NO EXISTE!");
+export let fileExist = (fileRoute) => fs.existsSync(fileRoute);
 
 // convert route in absolute
-let absoluteRoute = path.isAbsolute(fileRoute) ? fileRoute : path.resolve(fileRoute);
-console.log(absoluteRoute);
+export let absoluteRoute =(fileRoute) => path.resolve(fileRoute);
+
 
 //check if it is a File
-let file = fs.lstatSync(fileRoute).isFile() ? console.log("Es un Archivo") : console.log("No es un archivo");
+//let isfile  = fs.lstatSync(fileRoute).isFile();
 
 //check if it is a Directory
 const verifyFile = (fileRoute) => {
@@ -24,16 +23,15 @@ const verifyFile = (fileRoute) => {
   const listDirectory = isDirectory.isFile();
   return listDirectory;
 }
-verifyFile(fileRoute);
+//verifyFile(fileRoute);
 
 //Read Directory
-const directoryList = (fileRoute) => {
+export const directoryList = (fileRoute) => {
   let arrayFile = [];
   if (verifyFile(fileRoute)) {
     arrayFile.push(fileRoute);
   } else {
     const readDirectory = fs.readdirSync(fileRoute);
-
     readDirectory.forEach(eleFile => {
       const route = path.join(fileRoute, eleFile);
       arrayFile = arrayFile.concat(directoryList(route))
@@ -41,29 +39,28 @@ const directoryList = (fileRoute) => {
   }
   return arrayFile;
 }
-const result = directoryList(fileRoute);
-console.log('Directory List', result);
+//const arrDir = directoryList(fileRoute);
+//console.log('Directory List', result);
 
 // extract Md file and display an array
 
-const findMdFile = (arrMd) => {
-  let arrayMdFile = [];
-  arrayMdFile = arrMd.filter(e => path.extname(e) === '.md');
+export const findMdFile = (arrMd) => {
+  let arrayMdFile = arrMd.filter(e => path.extname(e) === '.md');
+
   return arrayMdFile;
 };
-const arrayMd = findMdFile(result);
-console.log('filter Md files', arrayMd);
+//console.log(findMdFile(arrDir));
+//const arrayMd = findMdFile(arrDir);
+//console.log('filter Md files', arrayMd);
 
 //Find Links and display an array
-const getLinks = (arrMdFile) => {
+export const getLinks = (arrMdFile) => {
   let arrayLinks = [];
   arrMdFile.forEach((mdRoute) => {
     //Read Files
     let fileContent = fs.readFileSync(mdRoute, 'utf-8');
-    console.log('Read File', fileContent);
     //Convert Md file to HTML
     const htmlFileContent = marked.parse(fileContent);
-    console.log('HTML File', htmlFileContent);
     //Get Links
     const dom = new JSDOM(htmlFileContent);
     const filterATags = dom.window.document.querySelectorAll('a');
@@ -78,10 +75,10 @@ const getLinks = (arrMdFile) => {
   return arrayLinks
 };
 
-console.log('Array of Links', getLinks(arrayMd));
+//console.log('Array of Links', getLinks(arrayMd));
 
 //Validate link
-const validateLinks = (objectLinks) => {
+export const validateLinks = (objectLinks) => {
   const arrayValidate = objectLinks.map((element) => {
     return fetch(element.href)
     .then((response) => {
@@ -103,7 +100,7 @@ const validateLinks = (objectLinks) => {
         };
       }
     })
-    .catch(() => {
+    .catch((error) => {
       return{
         href: element.href,
           text: element.text,
@@ -116,5 +113,9 @@ const validateLinks = (objectLinks) => {
   return Promise.all(arrayValidate);
 }
 
-console.log('Validation', validateLinks(getLinks(arrayMd)));
+/*validateLinks(getLinks(arrayMd))
+.then((res) => console.log(res))
+.catch((error) => console.log(error));*/
+
+
 

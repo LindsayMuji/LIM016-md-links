@@ -5,5 +5,5 @@
   <details><summary>Links</summary><p>
 
   * [Generalidades del protocolo HTTP - MDN](https://developer.mozilla.org/es/docs/Web/HTTP/Overview)
-  * [Mensajes HTTP - MDN](https://developer.mozilla.org/es/docs/Web/HTTP/Messages)
+  * [Mensajes HTTP - MDN](https://developer.mozilla.org/es/docs/Web/HTTP/Mess)
 </p></details>
