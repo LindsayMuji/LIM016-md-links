@@ -6,7 +6,7 @@ export const uniqueLinks = (arrayLinks) => {
   return linksSet.size
 };
 
-export const brokenOfLinksStats = (arrayOfLinks)=> {
+export const brokenLinks = (arrayOfLinks)=> {
   const broken = arrayOfLinks.filter((element)=>
   element.status<200 || element.status >= 400 || element.message === 'FAIL')
   const totalBroken = broken.length
