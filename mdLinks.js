@@ -13,7 +13,7 @@ import {fileExist, absoluteRoute, directoryList, findMdFile, getLinks, validateL
       } else {
         resolve(arrayFindLinks);
       }
-    } else reject(new Error('The Path does not exist'));
+    } else reject(new Error('The Path does not Exist'));
   });
    /*mdLinks('./CarpetaPrueba', { validate: false })
       .then(res => console.log(res))

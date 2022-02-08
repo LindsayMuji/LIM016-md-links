@@ -1,34 +1,34 @@
 import { mdLinks } from '../mdLinks.js';
 
-const mdFilePath = 'C://Users//melis//OneDrive//EScritorio//MDLinks//LIM016-md-links//CarpetaPrueba//Carpeta1//prueba3.md';
-const invalidPath = 'C://Users//melis//OneDrive//EScritorio//MDLinks//LIM016-md-links//CarpetaPrueba//prueba1.md';
+const mdFilePath = 'C:\\Users\\melis\\OneDrive\\EScritorio\\MDLinks\\LIM016-md-links\\CarpetaPrueba\\Carpeta1\\subcarpeta\\prueba4.md';
+const invalidPath = 'C:\\Users\\melis\\OneDrive\\EScritorio\\MDLinks\\LIM016-md-links\\CarpetaPrueba\\prueba4.md';
 const unvalidatedLinks = [
   {
-    href: 'https://developers.google.com/v8/',
-    text: 'motor de JavaScript V8 de Chrome',
-    file: 'C:\\Users\\melis\\OneDrive\\EScritorio\\MDLinks\\LIM016-md-links\\CarpetaPrueba\\Carpeta2\\prueba2.md'
+    href: 'https://developer.mozilla.org/es/docs/Web/HTTP/Overview',
+    text: 'Generalidades del protocolo HTTP - MDN',
+    file: 'C:\\Users\\melis\\OneDrive\\EScritorio\\MDLinks\\LIM016-md-links\\CarpetaPrueba\\Carpeta1\\subcarpeta\\prueba4.md'
   },
   {
-    href: 'https://nodejs.org/es/',
-    text: 'Node.js',
-    file: 'C:\\Users\\melis\\OneDrive\\EScritorio\\MDLinks\\LIM016-md-links\\CarpetaPrueba\\Carpeta2\\prueba2.md'
+    href: 'https://developer.mozilla.org/es/docs/Web/HTTP/Mess',
+    text: 'Mensajes HTTP - MDN',
+    file: 'C:\\Users\\melis\\OneDrive\\EScritorio\\MDLinks\\LIM016-md-links\\CarpetaPrueba\\Carpeta1\\subcarpeta\\prueba4.md'
   }
 ];
 
 const validatedLinks = [
   {
-    href: 'https://developer.mozilla.org/es/docs/Web/HTTP/Mess',
-    text: 'Mensajes HTTP - MDN',
-    file: 'C:\\Users\\melis\\OneDrive\\Escritorio\\MDLinks\\LIM016-md-links\\CarpetaPrueba\\Carpeta1\\subcarpeta\\prueba4.md',
-    status: 400,
-    ok: 'FAIL'
-  },
-  {
-    href: 'https://es.wikipedia.org/wiki/Markdown',
-    text: 'Markdown',
-    file: 'C:\\Users\\melis\\OneDrive\\Escritorio\\MDLinks\\LIM016-md-links\\CarpetaPrueba\\Carpeta2\\prueba2.md',
+    href: 'https://developer.mozilla.org/es/docs/Web/HTTP/Overview',
+    text: 'Generalidades del protocolo HTTP - MDN',
+    file: 'C:\\Users\\melis\\OneDrive\\EScritorio\\MDLinks\\LIM016-md-links\\CarpetaPrueba\\Carpeta1\\subcarpeta\\prueba4.md',
     status: 200,
     ok: 'OK'
+  },
+  {
+    href: 'https://developer.mozilla.org/es/docs/Web/HTTP/Mess',
+    text: 'Mensajes HTTP - MDN',
+    file: 'C:\\Users\\melis\\OneDrive\\EScritorio\\MDLinks\\LIM016-md-links\\CarpetaPrueba\\Carpeta1\\subcarpeta\\prueba4.md',
+    status: 404,
+    ok: 'FAIL'
   },
 ];
 
