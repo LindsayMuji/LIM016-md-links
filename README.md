@@ -25,13 +25,13 @@ Esta librería buscará archivos de tipo **.md** dentro de la ruta que se ingres
 
 #### 2.2 Diagrama CLI
 
-![](https://github.com/imagenes/DIAGRAMA%20FLUJO%)
+![](https://github.com/LindsayMuji/LIM016-md-links/blob/main/Images/CLI.png)
 
 ### 3. Instalación y uso de la librería
 
 #### 3.1 Instalación
 
-`npm i mdlinks-jcc`
+`npm i mdlinks-lmm`
 
 #### 3.2 Uso de la librería
 
@@ -43,22 +43,23 @@ Esta librería buscará archivos de tipo **.md** dentro de la ruta que se ingres
 - Ingresando el comando **md-Links** seguido de la **ruta** y seguido del comando **--validate**, obtendremos las propiedades de los links encontrados.
   Ejemplo:
 
-![](https://github.com/--validate.png)
+![](https://github.com/LindsayMuji/LIM016-md-links/blob/main/Images/--validate.png)
 
 - Ingresando el comando **md-Links** seguido de la **ruta** y seguido del comando **--stats**, obtendremos algunos datos estadisticos(total de links y cantidad de links unicos).
   Ejemplo:
 
-![](https://github.com/imagenes/--stats.png)
+![](https://github.com/LindsayMuji/LIM016-md-links/blob/main/Images/--stats.png)
 
 - Ingresando el comando **md-Links** seguido de la **ruta** y seguido de los comandos **--stats --validate** o **--validate --stats**, obtendremos la cantidad total de links que encontremos en ese archivo, el total de links unicos encontrados y el total de links rotos.
   Ejemplo:
 LIM016-md-links/blob/main/imagenes/
-![](https://github.com/n/imagenes/--validate%20--stats.png)
+![](https://github.com/LindsayMuji/LIM016-md-links/blob/main/Images/stats%20y%20validate.png)
+![](https://github.com/LindsayMuji/LIM016-md-links/blob/main/Images/validate%20y%20stats.png)
 
 - Ingresando el comando **md-Links** seguido de la **ruta** y seguido del comando **--help**, obtendremos una tabla con ayuda.
   Ejemplo:
 
-![](https://github.com/n/imagenes/--help.png)
+![](https://github.com/LindsayMuji/LIM016-md-links/blob/main/Images/help.png)
 
 ### 4. Objetivos de aprendizaje
 
@@ -116,17 +117,17 @@ LIM016-md-links/blob/main/imagenes/
 
 - [x] **Git: Integración de cambios entre ramas (branch, checkout, fetch, merge, reset, rebase, tag)**
 
-- [ ] **GitHub: Creación de cuenta y repos, configuración de llaves SSH**
+- [x] **GitHub: Creación de cuenta y repos, configuración de llaves SSH**
 
 - [x] **GitHub: Despliegue con GitHub Pages**
 
-- [ ] **GitHub: Colaboración en Github (branches | forks | pull requests | code review | tags)**
+- [x] **GitHub: Colaboración en Github (branches | forks | pull requests | code review | tags)**
 
 - [x] **GitHub: Organización en Github (projects | issues | labels | milestones | releases)**
 
 ### HTTP
 
-- [ ] **Consulta o petición (request) y respuesta (response).**
+- [x] **Consulta o petición (request) y respuesta (response).**
 
 - [x] **Codigos de status de HTTP**
 
@@ -138,9 +139,9 @@ LIM016-md-links/blob/main/imagenes/
 
 ### `README.md`
 
-- [x] Un board con el backlog para la implementación de la librería.
-- [x] Documentación técnica de la librería.
-- [x] Guía de uso e instalación de la librería
+- [ ] Un board con el backlog para la implementación de la librería.
+- [ ] Documentación técnica de la librería.
+- [ ] Guía de uso e instalación de la librería
 
 ### API `mdLinks(path, opts)`
 
