@@ -21,7 +21,7 @@ Esta librería buscará archivos de tipo **.md** dentro de la ruta que se ingres
 
 #### 2.1 Diagrama API
 
-![](https://github.com/imagenes/DIAGRAMA%20FLUJO%20API.jpg)
+![](https://github.com/LindsayMuji/LIM016-md-links/blob/main/Images/Md%20-%20Links.png)
 
 #### 2.2 Diagrama CLI
 
@@ -35,7 +35,7 @@ Esta librería buscará archivos de tipo **.md** dentro de la ruta que se ingres
 
 #### 3.2 Uso de la librería
 
-- En la terminal ingresamos el comando **md-Links** seguido de la **ruta** de la ubicación del archivo y/o carpeta en la cual se buscara los links.
+- En la terminal ingresamos el comando node **md-Links** seguido de la **ruta** de la ubicación del archivo y/o carpeta en la cual se buscara los links.
   Ejemplo:
 
 ![](https://github.com/imagenes/ruta%20sin%20opcion.png)

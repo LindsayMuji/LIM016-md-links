@@ -37,7 +37,7 @@ switch (arrOptions.length) {
     } else console.log(chalk.redBright.bold('Invalid Option'));
     break;
   case 3:
-    if ((arrOptions[1] === '--validate' && aarrOptions[2] === '--stats') || (arrOptions[1] === '--stats' && arrOptions[2] === '--validate')) {
+    if ((arrOptions[1] === '--validate' && arrOptions[2] === '--stats') || (arrOptions[1] === '--stats' && arrOptions[2] === '--validate')) {
       mdLinks(arrOptions[0], { validate: true })
         .then(res => {
           console.log(`${chalk.cyan.underline('Total:')}  ${totalLinks(res)}`);
